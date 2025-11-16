@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HeadStart Studios Casting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+  body {
+    margin: 0;
+    background: #000;
+  }
+  .casting-section {
+    background: #050505;
+    color: #f5f5f5;
+    padding: 3rem 1.5rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .casting-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .casting-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .casting-header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #ff3333;
+  }
+
+  .casting-header p {
+    color: #cccccc;
+  }
+
+  .casting-read-before {
+    background: #151515;
+    border-left: 4px solid #ff3333;
+    padding: 1.25rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .casting-read-before h2 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #ff6666;
+  }
+
+  .casting-read-before ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #dddddd;
+  }
+
+  .casting-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .casting-form-wrapper {
+    flex: 1 1 58%;
+    min-width: 280px;
+    background: #111111;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  }
+
+  .casting-form-wrapper h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: #ff3333;
+    font-size: 1.4rem;
+  }
+
+  .casting-form .form-row {
+    margin-bottom: 1rem;
+  }
+
+  .casting-form label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .casting-form input[type="text"],
+  .casting-form input[type="email"],
+  .casting-form input[type="tel"],
+  .casting-form input[type="number"],
+  .casting-form input[type="file"],
+  .casting-form textarea {
+    width: 100%;
+    padding: 0.5rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid #333333;
+    background: #050505;
+    color: #f5f5f5;
+    font-size: 0.95rem;
+  }
+
+  .casting-form textarea {
+    resize: vertical;
+  }
+
+  .casting-form small {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #aaaaaa;
+  }
+
+  .two-col {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .two-col label {
+    flex: 1 1 140px;
+  }
+
+  .checkbox-row {
+    font-size: 0.85rem;
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    margin-right: 0.4rem;
+  }
+
+  .casting-submit {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    background: #ff3333;
+    color: #ffffff;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  .casting-submit:hover {
+    background: #ff5050;
+    transform: translateY(-1px);
+  }
+
+  .casting-sidebar {
+    flex: 1 1 32%;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .qr-block {
+    background: #111111;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  }
+
+  .qr-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    background: #ffffff;
+  }
+
+  .qr-caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #ffffff;
+  }
+
+  .legal-box {
+    background: #111111;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    font-size: 0.85rem;
+    color: #dddddd;
+    border: 1px solid #2a2a2a;
+  }
+
+  .legal-box h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #ff6666;
+  }
+
+  .legal-small {
+    font-size: 0.75rem;
+    color: #aaaaaa;
+    margin-top: 0.75rem;
+  }
+
+  .hidden-field {
+    display: none;
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 768px) {
+    .casting-section {
+      padding: 2rem 1rem;
+    }
+    .casting-header h1 {
+      font-size: 2rem;
+    }
+  }
+  </style>
+</head>
+<body>
+<section id="casting" class="casting-section">
+  <div class="casting-container">
+    <header class="casting-header">
+      <h1>HeadStart Studios Casting</h1>
+      <p>Professional adult film auditions. Must be 18+ to apply.</p>
+    </header>
+
+    <section class="casting-read-before">
+      <h2>Read Before Applying</h2>
+      <ul>
+        <li>You must be at least <strong>18 years old</strong>. No exceptions.</li>
+        <li>You must have a valid, government-issued photo ID.</li>
+        <li>All submissions are confidential and used only for casting purposes.</li>
+        <li>Submitting this form does <strong>not</strong> guarantee work or a booking.</li>
+        <li>By applying, you agree that all information and images you provide are truthful and belong to you.</li>
+      </ul>
+    </section>
+
+    <div class="casting-layout">
+      <div class="casting-form-wrapper">
+        <h2>Submit Your Casting Application</h2>
+
+        <form
+          name="casting"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          enctype="multipart/form-data"
+          class="casting-form"
+        >
+          <input type="hidden" name="form-name" value="casting" />
+
+          <p class="hidden-field">
+            <label>Don’t fill this out if you’re human:
+              <input name="bot-field" />
+            </label>
+          </p>
+
+          <div class="form-row">
+            <label>
+              Full Name *
+              <input type="text" name="name" required />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Email *
+              <input type="email" name="email" required />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Phone Number *
+              <input type="tel" name="phone" required />
+            </label>
+          </div>
+
+          <div class="form-row two-col">
+            <label>
+              Age (18+ only) *
+              <input type="number" name="age" min="18" required />
+            </label>
+            <label>
+              City / State
+              <input type="text" name="location" />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Gender / Identity
+              <input type="text" name="gender" placeholder="e.g., Female, Male, Trans, Non-binary, etc." />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Links (IG, OnlyFans, Twitter, website, etc.)
+              <textarea name="links" rows="2" placeholder="Paste any social or portfolio links here"></textarea>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Experience (if any)
+              <textarea name="experience" rows="3" placeholder="Tell us about your on-camera or modeling experience."></textarea>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Roles You’re Interested In
+              <textarea name="roles" rows="2" placeholder="e.g., solo, girl/girl, boy/girl, group scenes, etc."></textarea>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Upload Recent Photos (up to 3) *
+              <input type="file" name="photos" accept="image/*" multiple required />
+              <small>Upload clear, recent photos. No filters preferred.</small>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Upload Photo ID (front) *
+              <input type="file" name="id_front" accept="image/*,application/pdf" required />
+              <small>Government-issued ID showing your face, name, and date of birth.</small>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Upload Photo ID (back) (optional)
+              <input type="file" name="id_back" accept="image/*,application/pdf" />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Additional Message
+              <textarea name="message" rows="3" placeholder="Anything else we should know?"></textarea>
+            </label>
+          </div>
+
+          <div class="form-row checkbox-row">
+            <label>
+              <input type="checkbox" name="confirm_18" required />
+              I confirm that I am at least 18 years old and the information I am submitting is true.
+            </label>
+          </div>
+
+          <div class="form-row checkbox-row">
+            <label>
+              <input type="checkbox" name="agree_terms" required />
+              I understand this is an application only and does not guarantee work, hire, or payment.
+            </label>
+          </div>
+
+          <button type="submit" class="casting-submit">Submit Application</button>
+        </form>
+      </div>
+
+      <aside class="casting-sidebar">
+        <div class="qr-block">
+          <img
+            src="qr-code.png"
+            alt="Scan QR for direct contact"
+            class="qr-image"
+          />
+          <p class="qr-caption">Scan for Direct Contact</p>
+        </div>
+
+        <section class="legal-box">
+          <h3>Legal Notice – 18 U.S.C. 2257</h3>
+          <p>
+            All performers depicted in any visual content produced by HeadStart Studios
+            are required to be at least eighteen (18) years of age or older at the time of
+            production. We maintain age-verification records for all performers in
+            accordance with 18 U.S.C. § 2257 and applicable regulations.
+          </p>
+          <p>
+            By submitting this form, you acknowledge that you are at least 18 years old,
+            that you are submitting your information voluntarily for casting consideration,
+            and that you consent to our storing and reviewing your submission for
+            professional evaluation.
+          </p>
+          <p class="legal-small">
+            This text is provided for informational and branding purposes only and does not
+            constitute legal advice. Consult a qualified attorney to ensure full compliance
+            with all applicable laws and regulations.
+          </p>
+        </section>
+      </aside>
+    </div>
+  </div>
+</section>
+</body>
+</html>
